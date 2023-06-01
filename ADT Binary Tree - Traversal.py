@@ -90,6 +90,25 @@ class Tree:
             if pop_node.left:
                 stack.append(pop_node.left)
 
+    def dfs_preorder_it_2(self, node=None):
+        # In preorder: root -> left -> right
+        # but when we use stack: right -> left -> root
+        if not node:
+            node = self.root
+            if not node:
+                return
+        res, stack = [], [(node, False)]
+        while stack:
+            node, visited = stack.pop()  # the last element
+            if node:
+                if visited:
+                    res.append(node.val)
+                else:  # preorder: root -> left -> right
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
+                    stack.append((node, True))
+        return res
+
     def dfs_inorder_it(self, node=None):
         if not node:
             node = self.root
@@ -105,6 +124,25 @@ class Tree:
             print(pop_node.val, end=' ')
             cur = pop_node.right  # 再检查其有没有右节点，有的话循环加入
 
+    def dfs_inorder_it_2(self, node=None):
+        # In inorder: left -> root -> right
+        # but when we use stack: right -> root -> left
+        if not node:
+            node = self.root
+            if not node:
+                return
+        res, stack = [], [(node, False)]
+        while stack:
+            node, visited = stack.pop()  # the last element
+            if node:
+                if visited:
+                    res.append(node.val)
+                else:  # preorder: root -> left -> right
+                    stack.append((node.right, False))
+                    stack.append((node, True))
+                    stack.append((node.left, False))
+        return res
+
     def dfs_postorder_it(self, node=None):
         # 常用的有两种方法：
         # 第一种，postorder是preorder的反向，所以可以将postorder的结果放在list中，按照preorder操作，最后reverse list
@@ -113,7 +151,7 @@ class Tree:
             node = self.root
             if not node:
                 return
-        stack = [node]  # 2
+        stack = [node] * 2  # 2
         while stack:
             pop_node = stack.pop()
             if stack and pop_node == stack[-1]:
@@ -125,6 +163,25 @@ class Tree:
                     stack.append(pop_node.left)
             else:
                 print(pop_node.val, end=' ')
+
+    def dfs_postorder_it_2(self, node=None):
+        # In postorder: left -> right -> root
+        # but when we use stack:  root -> right ->left
+        if not node:
+            node = self.root
+            if not node:
+                return
+        res, stack = [], [(node, False)]
+        while stack:
+            node, visited = stack.pop()  # the last element
+            if node:
+                if visited:
+                    res.append(node.val)
+                else:  # preorder: root -> left -> right
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
+        return res
 
     def morris_inorder_it(self, node=None):
         # 一种不使用栈的方法来遍历二叉树，空间复杂度为O(1)
@@ -163,12 +220,14 @@ tree.add_element(7)
 # tree.bfs()
 # tree.dfs_preorder_re(tree.root)
 # tree.dfs_inorder_re(tree.root)
-# tree.dfs_postorder_re(tree.root)
+tree.dfs_postorder_re(tree.root)
 # tree.dfs_preorder_it(tree.root)
+# print(tree.dfs_preorder_it_2(tree.root))
 # tree.dfs_inorder_it(tree.root)
-# tree.dfs_preorder_it(tree.root)
-tree.morris_inorder_it(tree.root)
-
+# print(tree.dfs_inorder_it_2(tree.root))
+tree.dfs_postorder_it(tree.root)
+print(tree.dfs_postorder_it_2(tree.root))
+# tree.morris_inorder_it(tree.root)
 
 # n = Node(1)
 # n.left = Node(2)

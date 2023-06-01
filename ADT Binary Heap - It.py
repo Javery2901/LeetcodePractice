@@ -25,8 +25,8 @@ class BinaryHeap:
     def perc_down(self, i):
         while i * 2 <= self.current_size:
             min_child = self.min_child(i)
-            if self.heap_list[i] > self.heap_list[mc]:
-                self.heap_list[i], self.heap_list[mc] = self.heap_list[mc], self.heap_list[i]
+            if self.heap_list[i] > self.heap_list[min_child]:
+                self.heap_list[i], self.heap_list[min_child] = self.heap_list[min_child], self.heap_list[i]
             i = min_child
 
     def del_min(self):
@@ -46,7 +46,4 @@ class BinaryHeap:
             self.perc_down(i)
             i -= 1
         print(self.heap_list, i)
-
-
-
 

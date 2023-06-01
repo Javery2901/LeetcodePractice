@@ -47,6 +47,7 @@ class BinaryHeap:
             i -= 1
         print(self.heap_list, i)
         print()
+        print()
 
 
 

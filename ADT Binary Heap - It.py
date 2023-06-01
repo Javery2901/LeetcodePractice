@@ -46,8 +46,6 @@ class BinaryHeap:
             self.perc_down(i)
             i -= 1
         print(self.heap_list, i)
-        print()
-        print()
 
 
 

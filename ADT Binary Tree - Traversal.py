@@ -201,7 +201,6 @@ class Tree:
                 prev.right = None
             print(cur.val, end=' ')
             cur = cur.right
-    # Morris遍历会修改树的结构，因此如果在遍历过程中需要保持树的原始结构，建议使用其他遍历方法。
 
 
 """

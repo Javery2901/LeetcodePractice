@@ -13,7 +13,7 @@ class Solution:
         def valid(node, left, right):
             if not node:
                 return True
-            if node.val > left and node.val < right:
+            if left < node.val < right:
                 return valid(node.left, left, node.val) and valid(node.right, node.val, right)
             else:
                 return False

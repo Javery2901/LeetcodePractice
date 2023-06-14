@@ -1,3 +1,8 @@
+"""
+适用于undirected graph 中的圈查找
+"""
+
+
 class UFDS:
     def __init__(self, n):
         self.parent = list(range(n))

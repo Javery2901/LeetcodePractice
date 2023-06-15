@@ -1,12 +1,12 @@
 """
-以 leetcode 207 题为例，判断图是否包含圈
+以 leetcode 207 题为例，判断一个有向图是否包含圈
 三种方法，图均以AL表记录。
 time complexity: O(V + E)
 """
 import collections
 
 
-class Solution:
+class DirectedSolution:
     def detect_cycle_dfs(self, node_number: int, AL: dict) -> bool:
         status = [0] * node_number
 
@@ -33,7 +33,8 @@ class Solution:
         return False
 
     def detect_cycle_backtrack(self, node_number: int, AL: dict) -> bool:
-        visited =set()
+        visited = set()
+
         # we dont need the exploring status anymore
 
         def backtrack(node):
@@ -80,7 +81,7 @@ class Solution:
         return False
 
 
-s = Solution()
+s = DirectedSolution()
 node_number = 4
 AL = {0: [1, 2], 1: [3], 2: [3]}
 test1 = s.detect_cycle_dfs(node_number, AL)

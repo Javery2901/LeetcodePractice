@@ -3,34 +3,24 @@ from typing import List
 
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        n = len(triplets)
-        judge = [0] * n
-        exist = [0] * 3  # check if elements == target[i]
+        exist = [0] * 3  # check if elements == target[i] exist = [False, False, False]
+
         for i, element in enumerate(triplets):
             x, y, z = element[0], element[1], element[2]
-            # print(x, y, z)
             if x <= target[0] and y <= target[1] and z <= target[2]:
-                judge[i] = 1
-                # print(judge)
                 if exist[0] == 0 and x == target[0]:
-                    exist[0] = 1
+                    exist[0] = 1  # exist = [True, False, False]
                 if exist[1] == 0 and y == target[1]:
                     exist[1] = 1
                 if exist[2] == 0 and z == target[2]:
                     exist[2] = 1
-                # print(exist)
 
-        for i in exist:
-            if i == 0:
-                return False
-        for i in judge:
-            if i == 1:
-                return True
-        return False
+        return exist == [1,1,1]
+
 
 
 s = Solution()
-triplets = [[2,5,3],[2,3,4],[1,2,5],[5,2,3]]
-target = [5,5,5]
+triplets = [[2,5,3],[1,8,4],[1,7,5]]
+target = [2,7,5]
 test = s.mergeTriplets(triplets, target)
 print(test)

@@ -21,8 +21,17 @@ class Solution:
             change = False
         return max_profit
 
+    def maxProfit_template(self, prices: List[int]) -> int:  # 也是贪心的思路
+        left = 0
+        max_profit = 0
+        for right in range(1, len(prices)):
+            if prices[right] < prices[left]:
+                left = right
+            max_profit = max(max_profit, prices[right] - prices[left])
+        return max_profit
+
 
 sol = Solution()
 prices = [7, 1, 5, 3, 6, 4]
-res = sol.maxProfit(prices)
+res = sol.maxProfit_template(prices)
 print(res)

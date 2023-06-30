@@ -9,17 +9,17 @@ class Solution:
         target = sum(nums) // 2
         memo = {}
 
-        def backtrack(index, cur_value):
+        def recursion(index, cur_value):
             if cur_value == 0:
                 return True
             if index == len(nums):
                 return False
             if (index, cur_value) in memo:
                 return memo[(index, cur_value)]
-            memo[(index, cur_value)] = backtrack(index + 1, cur_value) or backtrack(index + 1, cur_value - nums[index])
+            memo[(index, cur_value)] = recursion(index + 1, cur_value) or recursion(index + 1, cur_value - nums[index])
             return memo[(index, cur_value)]
 
-        backtrack(0, target)
+        recursion(0, target)
         # print(memo)
         return memo[(0, target)]
 

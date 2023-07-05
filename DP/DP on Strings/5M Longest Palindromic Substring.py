@@ -44,10 +44,11 @@ class Solution:
                         if longest_palindrome_index[1] - longest_palindrome_index[0] < j - i + 1:
                             longest_palindrome_index = (i, j + 1)
         left, right = longest_palindrome_index[0], longest_palindrome_index[1]
+        print(table)
         return s[left: right]
 
 
 so = Solution()
-s = 'ac'
+s = 'bbbbb'
 test = so.longestPalindrome_bottom_up(s)
 print(test)

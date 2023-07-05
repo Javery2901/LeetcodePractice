@@ -49,6 +49,6 @@ class Solution:
 
 
 so = Solution()
-s = 'bbbbb'
+s = 'abcba'
 test = so.longestPalindrome_bottom_up(s)
 print(test)

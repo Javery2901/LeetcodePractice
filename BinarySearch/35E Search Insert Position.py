@@ -1,9 +1,3 @@
-"""
-Difficulty: Easy
-Solution: binary search template
-Time complexity: O(logn)
-Space complexity: O(1)
-"""
 from typing import List
 
 
@@ -13,17 +7,18 @@ class Solution:
         right = len(nums)
         while left < right:
             mid = left + (right - left) // 2
-            print(mid)
-            if nums[mid] >= target:
+            if nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
                 right = mid
             else:
-                left = mid + 1
-            print(left, right)
-        return left  # left is the minimum k that satisfies nums[mid] >= target
+                return mid
+        return left
+        # left is the minimum requirement
 
 
-sol = Solution()
-nums = [3,6,7,11]
-target = 8
-res = sol.searchInsert(nums, target)
-print(res)
+s = Solution()
+nums = [1,3,5,6]
+target = 2
+test = s.searchInsert(nums, target)
+print(test)

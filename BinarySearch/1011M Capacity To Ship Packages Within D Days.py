@@ -1,43 +1,37 @@
-"""
-Difficulty: Median
-Solution: binary search template
-Time complexity: O(logn)
-Space complexity: O(1)
-"""
 from typing import List
 
 
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
-        def feasible(capacity):  # check if it can ship all within required days
-            day = 1
-            weight = 0
-            for i in weights:
-                weight += i
-                if weight > capacity:
-                    weight = i
-                    day += 1
-                    if day > days:
-                        return False
-            return True
+        # minimum capacity is min(weights)
+        # maximum capacity is sum(weights)
+        left = max(weights)
+        right = sum(weights)
 
-        left, right = max(weights), sum(weights)
-        # capacity: the minimum requirement is that it can ship at least one package
-        # maximum requirement is that it can ship all packages in one day
+        def capacity(n):
+            day = 1
+            load = 0
+            for w in weights:
+                if load + w <= n:
+                    load += w
+                else:
+                    day += 1
+                    load = w
+            if day <= days:
+                return True
+            return False
+
         while left < right:
             mid = left + (right - left) // 2
-            print(mid)
-            print(feasible(mid))
-            if feasible(mid):
+            if capacity(mid):
                 right = mid
             else:
                 left = mid + 1
-            print(left, right)
         return left
 
 
-sol = Solution()
-weights = [1,2,3,1,1]
-days = 4
-res = sol.shipWithinDays(weights, days)
-print(res)
+s = Solution()
+weights = [3,2,2,4,1,4]
+days = 3
+test = s.shipWithinDays(weights, days)
+print(test)

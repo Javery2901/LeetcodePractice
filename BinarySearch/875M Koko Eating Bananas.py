@@ -1,32 +1,36 @@
-"""
-Runtime: ms488, beat 44%
-Difficulty: Median
-Solution: binary search
-Time complexity: O(nlogn)
-Space complexity: O(1)
-"""
 from typing import List
 
 
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        start = 1
-        end = max(piles)
-        while start < end:
-            k = (start + end) // 2
-            ret = 0
+
+        def time_require(speed):
+            total_hour = 0
             for i in piles:
-                ret += i // k + 1 if i % k > 0 else i // k
-            if ret <= h:
-                end = k
+                if i <= speed:
+                    total_hour += 1
+                else:
+                    total_hour += (i // speed)
+                    if i % speed != 0:
+                        total_hour += 1
+            if total_hour <= h:
+                # means speed is too fast
+                return True
+            return False
+
+        left = 1
+        right = max(piles)
+        while left < right:
+            mid = left + (right - left) // 2
+            if time_require(mid):
+                right = mid
             else:
-                start = k + 1
-            # print(ret, k, start, end)
-        return start
+                left = mid + 1
+        return left
 
 
-sol = Solution()
-piles = [3,6,7,11]
-h = 8
-res = sol.minEatingSpeed(piles, h)
-print(res)
+s = Solution()
+piles = [30,11,23,4,20]
+h = 5
+test = s.minEatingSpeed(piles, h)
+print(test)

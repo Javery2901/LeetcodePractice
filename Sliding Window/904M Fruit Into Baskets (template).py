@@ -27,7 +27,7 @@ class Solution:
 
 
 sol = Solution()
-fruits = [0,1,6,6,4,4,6]
+fruits = [3,3,3,1,2,1,1,2,3,3,4]
 # fruits = [1,2,1,3,2,2,3,2]
 # fruits = [1,2,1]
 res = sol.totalFruit(fruits)

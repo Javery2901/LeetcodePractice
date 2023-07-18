@@ -38,6 +38,7 @@ class Solution:
         return others_to_update
 
     def sliding_window(self, nums: List, goal: int): -> int
+        # only works if the range of nums ∈ Z+ (+ve integers)!!!
         def less_equal_than_goal(self, nums, goal):
             left = 0
             count = 0
@@ -51,4 +52,4 @@ class Solution:
                 # 这一步意为，count计数中当right右移一位后，究竟有多少新增值
             return count
         return less_equal_than_goal(nums, goal) - less_equal_than_goal(nums, goal - 1)
-
+        # No. of subarrays with exactly k = No. of subarrays with at most k - No. of subarrays with at most k-1.

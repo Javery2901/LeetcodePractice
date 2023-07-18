@@ -12,13 +12,14 @@ class Solution:
         #         return left
         #     left += 1
         # return -1
-    # if needle == " ", it will return o, which is correct.
+        # if needle == " ", it will return 0, which is correct.
         m = len(needle)
         n = len(haystack)
         for i in range(0, n - m + 1):
             if haystack[i: i +m] == needle:
                 return i
         return -1
+
 
 sol = Solution()
 haystack = "sadbutsad"

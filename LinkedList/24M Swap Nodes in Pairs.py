@@ -1,6 +1,6 @@
 # Definition for singly-linked list.
-
 from typing import Optional
+
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -8,35 +8,38 @@ class ListNode:
         self.next = next
 
 class Solution:
+    def swapPairs_recursive(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return
+
+        def recursive(head):
+            if not head or not head.next:
+                return head
+
+            prev = head
+            cur = head.next
+            future = head.next.next
+
+            cur.next = prev
+            prev.next = recursive(future)
+            return cur
+        return recursive(head)
+
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummynode = ListNode(0)
-        pre = dummynode
+        # 1 2 3 4 -> 2 1 3 4, 3 4 翻转时需要知道1的地址，
+        # 即2 1 操作时需要额外一个指针来保存1，这样3 4 翻转后1的next可以链接3
+        # 一般两个指针时： prev = None， cur = head
+        # 三个指针时，新建一个node
+        dummy_node = ListNode()
+        pre = dummy_node
         pre.next = head
         while pre.next and pre.next.next:
-            # 1-2-3-4 翻转 2-1, 成为2-1-3-4，后转3-4变成4-3.
-            # 但是，1 需要从1-3变成1-4
-            # 因此，需要一个额外的指针记录1的地址，这样才能实现.next = 4
-            # 因此，用.next记录翻转后的数，并用指针记录1的地址
-            cur = pre.next  # 1
-            future = pre.next.next  # 2
-            cur.next = future.next  # 1-3
-            future.next = cur  # 2-1
-            pre.next = future  # 2
-            pre = cur  # 1
-        return dummynode.next
-
-
-
-
-
-
-
-s = Solution()
-phead = ListNode(1)
-phead.next = ListNode(2)
-phead.next.next = ListNode(3)
-phead.next.next.next = ListNode(4)
-test = s.swapPairs(phead)
-while test:
-    print(test.val)
-    test = test.next
+            cur = pre.next
+            future = pre.next.next # cur -> 1, future -> 2
+            # 如果两个都存在，反转，如果只有一个cur，不操作
+            cur.next = future.next  # 1 -> 3
+            future.next = cur
+            # dummy_node 要连到2上，
+            pre.next = future
+            pre = cur # 用pre保存1的地址
+        return dummy_node.next

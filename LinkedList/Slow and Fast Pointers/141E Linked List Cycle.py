@@ -9,12 +9,14 @@ class ListNode:
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        address = set()
-        pointer = head
-        while pointer:
-            if pointer not in address:
-                address.add(pointer)
-            else:
+        if not head:
+            return False
+        dummy = ListNode(0)
+        dummy.next = head
+        slow = fast = dummy
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
                 return True
-            pointer = pointer.next
         return False

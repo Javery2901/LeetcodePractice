@@ -15,6 +15,8 @@ space complexity: O(1)
 """
 """
 以 leetcode 287为典型. Find the Duplicate Number
+以 leetcode 141为典型，Linked List Cycle
+以 leetcode 142为典型，Linked List Cycle II
 """
 
 

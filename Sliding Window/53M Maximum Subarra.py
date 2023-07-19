@@ -11,8 +11,7 @@ class Solution:
         best_max = -inf
         for right in range(len(nums)):
             current_max += nums[right]
-            if current_max > best_max:
-                best_max = current_max
+            best_max = max(best_max, current_max)
             while current_max < 0:  # important, 处理left指针问题
                 # 当current_sum < 0, 代表subarray的起始点开始移动，即left收缩窗口直到当current_sum 回归0
                 current_max -= nums[left]

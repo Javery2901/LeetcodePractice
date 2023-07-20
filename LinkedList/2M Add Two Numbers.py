@@ -10,22 +10,23 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        node = ListNode(0)
-        cur = node
+        dummy = ListNode()
         base = 0
+        current = dummy
 
-        while l1 or l2 or base:
-            val1 = l1.val if l1 else 0
-            val2 = l2.val if l2 else 0
-            summ = val1 + val2 + base
-            base = summ // 10
-            summ = summ % 10
-            cur.next = ListNode(summ)
-
-            cur = cur.next
-            l1 = l1.next if l1 else None
-            l2 = l2.next if l2 else None
-        return node.next
+        while l1 or l2 or base:  # or base is important
+            add_sum = base
+            if l1:
+                add_sum += l1.val
+                l1 = l1.next
+            if l2:
+                add_sum += l2.val
+                l2 = l2.next
+            base = add_sum // 10
+            add_sum = add_sum % 10
+            current.next = ListNode(add_sum)
+            current = current.next
+        return dummy.next
 
 
 l1 = ListNode(5)

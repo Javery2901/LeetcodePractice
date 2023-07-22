@@ -17,7 +17,8 @@ class Solution:
         self.diameter = 0
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        # 思路：创建self.diameter,保存每次
+        # 思路：创建self.diameter,遍历每个节点，找到每个结点的高度，最下面为1，往上逐层加1
+        # 保存每次的节点相加的最大值，即为所求的路线商都
         def max_height(node):
             if not node:
                 return 0

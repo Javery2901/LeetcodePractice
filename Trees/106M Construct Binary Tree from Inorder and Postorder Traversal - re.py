@@ -12,19 +12,19 @@ class TreeNode:
         self.right = right
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        memo = {}
-        for k, v in enumerate(inorder):
-            memo[v] = k
+        dic = {}
+        for i, n in enumerate(inorder):
+            dic[n] = i
+        # postorder: the last one is root
 
-        def tree(left, right):
+        def build(left, right):
             if left >= right:
                 return
-            node_val = postorder.pop()
-            node = TreeNode(node_val)
-            node_index = memo[node_val]
-            node.right = tree(node_index, right)
-            node.left = tree(left, node_index + 1)
+            value = postorder.pop()
+            node = TreeNode(value)
+            index = dic[value]  # index = 1, 1 之前的均为left，之后的均为right
+            node.right = build(index + 1, right)
+            node.left = build(left, index)
             return node
 
-        return tree(0, len(inorder))
-
+        return build(0, len(inorder))

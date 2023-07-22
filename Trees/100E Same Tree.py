@@ -11,6 +11,16 @@ class TreeNode:
 
 
 class Solution:
+
+    def isSameTree_re(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        # else if one of p and q are empty, return False
+        if not (p and q):
+            return False
+        if p.val == q.val and self.isSameTree_re(p.left, q.left) and self.isSameTree_re(p.right, q.right):
+            return True
+        
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         # if p and q are both empty, return True
         if not p and not q:

@@ -14,7 +14,8 @@ class Solution:
     def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
-        i = -1
+        i = -1  # use this to check the height
+        # if height % 2 == 1: reverse the list
         res = []
         queue = collections.deque([root])
         while queue:

@@ -1,4 +1,5 @@
 # Definition for a binary tree node.
+from cmath import inf
 from typing import Optional
 
 
@@ -11,7 +12,7 @@ class TreeNode:
 
 class Solution:
     def __init__(self):
-        self.max_path = None
+        self.max_path = -inf
 
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         def path_sum(root):
@@ -22,6 +23,5 @@ class Solution:
             self.max_path = max(self.max_path, root.val, root.val + left_sum, root.val + right_sum, left_sum + right_sum + root.val)
             return max(left_sum + root.val, right_sum + root.val, root.val)
 
-        self.max_path = root.val
         path_sum(root)
-        return int(self.max_path)
+        return self.max_path

@@ -26,5 +26,12 @@ class Solution:
             height += 1
         return height
 
+    def maxDepth_re(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        left_depth = self.maxDepth_re(root.left)
+        right_depth = self.maxDepth_re(root.right)
+        return max(left_depth, right_depth) + 1
+
 
 

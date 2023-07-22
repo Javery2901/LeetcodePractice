@@ -19,7 +19,7 @@ class Solution:
         while queue:
             l = len(queue)
             level_list = []
-            for _ in range(l):
+            for _ in range(l):  # 2-d list
                 pop_node = queue.popleft()
                 level_list.append(pop_node.val)
                 if pop_node.left:

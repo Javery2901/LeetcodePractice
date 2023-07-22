@@ -13,6 +13,7 @@ class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         if not nums:
             return
+        # idea: binary search tree: use binary search, the middle element is the root
         mid = len(nums) // 2
         node = TreeNode(nums[mid])
         node.left = self.sortedArrayToBST(nums[:mid])

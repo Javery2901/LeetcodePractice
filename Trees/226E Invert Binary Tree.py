@@ -26,6 +26,27 @@ class Solution:
                 node.left, node.right = node.right, node.left
         return root
 
+    def invertTree_stack(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return
+        stack = [root]
+        while stack:
+            pop_node = stack.pop()
+            pop_node.left, pop_node.right = pop_node.right, pop_node.left
+            if pop_node.right:
+                stack.append(pop_node.right)
+            if pop_node.left:
+                stack.append(pop_node.left)
+        return root
+
+    def invertTree_re(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return
+        root.left, root.right = root.right, root.left
+        self.invertTree_re(root.left)
+        self.invertTree_re(root.right)
+        return root
+
 
 s = Solution()
 qroot = TreeNode(4)

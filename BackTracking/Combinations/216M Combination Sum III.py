@@ -11,8 +11,10 @@ class Solution:
                 res.append(list(sublist))
                 return
 
-            for i in range(index, 10):
-                if i + combine_sum <= n:
+            for i in range(index, 10 - (k - len(sublist)) + 1):  # pruning,
+                # 类似于sliding window, 长度是固定的
+                # 当超过时，其实代表剩余可以的长度一定不足k，故剪枝
+                if i + combine_sum <= n:  # pruning，如果已经>n了，则不会再有答案
                     sublist.append(i)
                     dfs_backtracking(i + 1, i + combine_sum)
                     sublist.pop()

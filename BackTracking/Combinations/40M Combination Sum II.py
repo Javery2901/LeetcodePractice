@@ -14,7 +14,7 @@ class Solution:
                 return
 
             for i in range(index, len(candidates)):
-                if i > index and candidates[i] == candidates[i - 1]:
+                if i > index and candidates[i] == candidates[i - 1]:  # important
                     continue
                 if candidates[i] + combine_sum <= target:
                     sublist.append(candidates[i])

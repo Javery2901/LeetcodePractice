@@ -58,6 +58,24 @@ class Solution:
                     dfs(i, j)
         return count
 
+    def numIslands_dfs_set(self, grid: List[List[str]]) -> int:
+        visited = set()
+        count = 0
+
+        def dfs(row, col, visited):
+            if not (0 <= row < len(grid) and 0 <= col < len(grid[0])) or (row, col) in visited or grid[row][col] == '0':
+                return
+            visited.add((row, col))
+            for r, c in ((row + 1, col), (row - 1, col), (row, col + 1), (row, col - 1)):
+                dfs(r, c, visited)
+
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] == '1' and (i, j) not in visited:
+                    dfs(i, j, visited)
+                    count += 1
+        return count
+
 
 s = Solution()
 grid = [

@@ -87,8 +87,8 @@ class Solution:
 
 
 s = Solution()
-numCourses = 3
-prerequisites = [[1,0],[1,2],[0,1]]
+numCourses = 2
+prerequisites = [[1,0]]
 test = s.findOrder_dfs(numCourses, prerequisites)
 print(test)
 test2 = s.findOrder_bfs(numCourses, prerequisites)

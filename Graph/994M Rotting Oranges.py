@@ -5,7 +5,7 @@ from typing import List
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         # let's know the number of 0
-        # use bfs
+        # only can use bfs
 
         def valid(i, j):
             if 0 <= i < len(grid) and 0 <= j < len(grid[0]):

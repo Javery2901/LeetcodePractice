@@ -85,6 +85,7 @@ def bfs_toposort(AL):
 
 
 def dijkstra(s, V, Weighed_AL):  # O((V+E)logV)
+    # 适用于可能有负数权重，但不能有负数圈的情况
     # in the tuple t, v = t[0], dist = t[1]
     dist = [0 if u == 0 else inf for u in range(V)]
     to_visited = []

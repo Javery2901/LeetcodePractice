@@ -1,6 +1,11 @@
 from typing import List
 from collections import deque
 
+# 判断二分图， 使用dict而不是set
+# 记录颜色，1， -1
+# 有可能不是全链接，所以需要for loop
+# bfs
+
 
 class Solution:
     def isBipartite_bfs(self, graph: List[List[int]]) -> bool:

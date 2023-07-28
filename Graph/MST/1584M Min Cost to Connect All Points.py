@@ -37,6 +37,53 @@ class Solution:
                 heapq.heappush(pq, (dist, neighbor_node))
         return mst_cost
 
+    def minCostConnectPoints_Kruskal(self, points: List[List[int]]) -> int:
+        # kruskal using edge list
+
+        ls = [i for i in range(len(points))]
+        # 需要将每个点与ls对应上
+        dic = {}
+        for i, point in enumerate(points):
+            dic[tuple(point)] = i
+
+        def find(x, ls):
+            if x == ls[x]:
+                return x
+            cur = x
+            while cur != ls[cur]:
+                cur = ls[cur]
+            return cur
+
+        def union(x, y, ls):
+            x_parent = find(x, ls)
+            y_parent = find(y, ls)
+            if x_parent != y_parent:
+                ls[x_parent] = y_parent
+            return
+
+        def distance(point1, point2):
+            return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1])
+
+        cost = 0
+        edge_count = 0
+        edge_list = []
+
+        for i in range(len(points) - 1):
+            for j in range(i + 1, len(points)):
+                edge_list.append((distance(points[i], points[j]), points[i], points[j]))
+
+        edge_list.sort()  # this is huge
+        for edge_info in edge_list:
+            if edge_count == len(points) - 1:  # 当有edge_count的边被连起来是则说明全部连起来了
+                break
+            weight, point1, point2 = edge_info
+            p1, p2 = dic[tuple(point1)], dic[tuple(point2)]
+            if find(p1, ls) != find(p2, ls):
+                cost += weight
+                union(p1, p2, ls)
+                edge_count += 1
+        return cost
+
 
 s = Solution()
 points = [[3,12],[-2,5],[-4,1]]

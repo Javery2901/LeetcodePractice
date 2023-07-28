@@ -21,7 +21,7 @@ class Solution:
             status[node] = 2  # explore all the neighbors, if not cyclic yet, change the status of node: visited
             return False
 
-        for i in range(numCourses):
+        for i in range(numCourses):  # dont for loop al
             if status[i] == 0: # unvisited, start to dfs
                 if dfs_detected_cyclic(i, status):  # dfs(), if cyclic, return True, else return False
                     return False

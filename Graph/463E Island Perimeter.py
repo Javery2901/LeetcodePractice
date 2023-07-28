@@ -25,6 +25,6 @@ class Solution:
 
 
 s = Solution()
-grid = [[1,1],[1,1]]
+grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
 test = s.islandPerimeter(grid)
 print(test)

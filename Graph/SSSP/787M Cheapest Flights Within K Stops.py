@@ -37,7 +37,28 @@ class Solution:
                 heapq.heappush(pq, (c + cost, v, stop + 1))
         return -1
 
-
+    def findCheapestPrice_bfs(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        cost = [0 if i == src else -1 for i in range(n)]  # 用dict也可以
+        al = collections.defaultdict(list)
+        for u, v, price in flights:
+            al[u].append((price, v))
+        queue = collections.deque([src])
+        step = 0
+        while queue and step <= k:
+            print(queue)
+            print(cost)
+            length = len(queue)
+            temp_cost = cost.copy()
+            for _ in range(length):
+                node = queue.popleft()
+                for price, neighbor in al[node]:
+                    if temp_cost[neighbor] == -1 or temp_cost[neighbor] > cost[node] + price:
+                        temp_cost[neighbor] = cost[node] + price
+                        queue.append(neighbor)
+            step += 1
+            cost = temp_cost
+        print(cost)
+        return cost[dst]
 s = Solution()
 n = 5
 flights = [[0,1,5],[1,2,5],[0,3,2],[3,1,2],[1,4,1],[4,2,1]]

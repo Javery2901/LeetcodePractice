@@ -1,6 +1,6 @@
 from typing import List
 from collections import deque
-
+# use dict instead of set
 
 class Solution:
     def isBipartite_bfs(self, graph: List[List[int]]) -> bool:

@@ -1,42 +1,63 @@
 import collections
 import heapq
-from math import inf
+
+from cmath import inf
 from typing import List
 
 
 class Solution:
-    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-        # SSSP
-        AL = collections.defaultdict(list)
-        for t in times:
-            AL[t[0]].append((t[1], t[2]))
-        if n == 1:
-            return 0
-        if not AL[k]:
-            return -1
-        dist = [0 if i == k else inf for i in range(n + 1)]
-        pq = []
-        visited = set()
-        heapq.heappush(pq, (0, k))
-        while pq:
-            d, u = heapq.heappop(pq)  # 0, 2
-            if u not in visited:
-                visited.add(u)
-            if d > dist[u]:  # this step is very important
+    def networkDelayTime_modified_dijkstra(self, times: List[List[int]], n: int, k: int) -> int:
+        # modified dijkstra
+        al = collections.defaultdict(list)
+        for u, v, w in times:
+            al[u].append((w, v))
+        # print(al)  # {2: [(1, 1), (1, 3)], 3: [(1, 4)]}
+
+        distance = [inf if i != k else 0 for i in range(n + 1)]  # [1, n]
+        hp = []
+        heapq.heappush(hp, (0, k))  # (weight, node)
+        while hp:
+            dist, pop_node = heapq.heappop(hp)
+            if dist > distance[pop_node]:  # distance中存储的是至目前为止的权重最小值
+                # 若dist大于distance，则说明这条路不是最佳路线，无意义
                 continue
-            for v, w in AL[u]:
-                if w + dist[u] >= dist[v]:  # this is >=, very important
+            for d, neighbor in al[pop_node]:
+                if distance[pop_node] + d >= distance[neighbor]:
+                    # 如果从前一个节点到他的neighbor节点，权重值超过了neighbor目前的权重值，
+                    # 则说明这条路线不是最佳路线，不需要将他考虑下去
                     continue
-                dist[v] = w + dist[u]
-                heapq.heappush(pq, (dist[v], v))
-        if len(visited) < n:
+                distance[neighbor] = distance[pop_node] + d
+                heapq.heappush(hp, (distance[neighbor], neighbor))
+        # print(distance)
+        if inf in distance[1:]:
             return -1
-        return max(dist[1:])
+        return max(distance[1:])
+
+    def networkDelayTime_dijkstra(self, times: List[List[int]], n: int, k: int) -> int:
+        adj_list = collections.defaultdict(list)
+
+        for x, y, w in times:
+            adj_list[x].append((w, y))
+
+        visited = set()
+        heap = [(0, k)]
+        while heap:
+            travel_time, node = heapq.heappop(heap)
+            visited.add(node)
+
+            if len(visited) == n:
+                return travel_time
+
+            for time, adjacent_node in adj_list[node]:
+                if adjacent_node not in visited:
+                    heapq.heappush(heap, (travel_time + time, adjacent_node))
+
+        return -1
 
 
 s = Solution()
-times = [[1,2,1]]
-n = 2
+times = [[2,1,1],[2,3,1],[3,4,1]]
+n = 4
 k = 2
-test = s.networkDelayTime(times, n, k)
+test = s.networkDelayTime_modified_dijkstra(times, n, k)
 print(test)

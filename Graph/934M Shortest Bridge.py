@@ -6,6 +6,7 @@ class Solution:
     def shortestBridge(self, grid: List[List[int]]) -> int:
         # find the first island, and the surrounding water
         # bfs water one layer by one layer, until it touches the second island
+        # 边缘水加入queue能提高效率
         def valid(i, j):
             if 0 <= i < len(grid) and 0 <= j < len(grid):
                 return True

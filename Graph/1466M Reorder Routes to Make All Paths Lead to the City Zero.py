@@ -33,6 +33,36 @@ class Solution:
             # now visited = {0, 1, 3}
         return res
 
+    def minReorder_stack(self, n: int, connections: List[List[int]]) -> int:
+        # 出度，入度表
+        # 先从入读表，加入所有0的入读表，因为0的入读表代表着所有直接连向0的点
+        outdegree = collections.defaultdict(list)
+        indegree = collections.defaultdict(list)
+        for u, v in connections:
+            outdegree[u].append(v)
+            indegree[v].append(u)
+
+        visited = {0}
+        stack = [0]
+
+        count = 0
+        print(stack)
+        while stack:
+            pop_node = stack.pop()
+            if pop_node in indegree:
+                for neighbor in indegree[pop_node]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        stack.append(neighbor)
+            if pop_node in outdegree:
+                for neighbor in outdegree[pop_node]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        stack.append(neighbor)
+                        count += 1
+            # print(stack, visited, count)
+        return count
+
 
 s = Solution()
 n = 3

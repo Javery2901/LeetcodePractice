@@ -1,6 +1,6 @@
 """
 Spanning tree: a subgraph of G that is connected undirected weighted graph
-Minimum spanning tree(mst) of G is an spanning tree that has the smallest total weight
+Minimum spanning tree(mst) of G is a spanning tree that has the smallest total weight
 The output is either the actual MST of G ot just the min total weight.
 
 Kruskal's algorithm and Prim's algorithm: greedy algorithm

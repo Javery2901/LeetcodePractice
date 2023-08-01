@@ -44,6 +44,7 @@ class Solution:
         return dp(0, True)
 
     def maxProfit_bottom_up(self, prices: List[int]) -> int:
+        # 随想录系列
         # DP: 股票问题
         # 状态分析：对于第i天来说，有三种状态，持有/不持有/冷冻期
         # dp[i][0]表示第i天-持有-能够获得的最大利润

@@ -26,14 +26,12 @@ class Solution:
         # important note: nums = [1,2,4] target = 10
         # table[10] = table[9] + table[8] + table[6]
 
-        nums.sort()
-        table = [0] * (1 + target)
+        table = [0] * (target + 1)
         table[0] = 1
-        for i in range(1, target + 1):
-            for n in nums:
-                if n <= i:
-                    table[i] += table[i - n]
-        print(table)
+        for i in range(target + 1):
+            for j in range(len(nums)):
+                if i >= nums[j]:
+                    table[i] += table[i - nums[j]]
         return table[-1]
 
     def combinationSum4_top_down(self, nums: List[int], target: int) -> int:
@@ -53,11 +51,12 @@ class Solution:
             memo[t] = res
             return memo[t]
 
-        return dfs(target, memo)
+        dfs(target, memo)
+        return memo[target]
 
 
 s = Solution()
-nums = [4,2,1]
-target = 32
+nums = [1,2,3]
+target = 4
 test = s.combinationSum4_bottom_up(nums, target)
 print(test)

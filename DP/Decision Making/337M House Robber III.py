@@ -23,3 +23,26 @@ class Solution:
             return node.value + left[1] + right[1], max(left[0], left[1]) + max(right[0], right[1])
 
         return max(dfs(root))
+
+    def rob_top_down(self, root: Optional[TreeNode]) -> int:
+        memo = {}
+
+        def recursion(root):
+            if not root:
+                return 0
+            if not root.left and not root.right:
+                return root.val
+            if root in memo:
+                return memo[root]
+            # we steal this node
+            val1 = root.val
+            if root.left:
+                val1 += recursion(root.left.left) + recursion(root.left.right)
+            if root.right:
+                val1 += recursion(root.right.left) + recursion(root.right.right)
+            val2 = recursion(root.left) + recursion(root.rgiht)
+            memo[root] = max(val1, val2)
+
+            return memo[root]
+
+        return recursion(root)

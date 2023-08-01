@@ -30,8 +30,9 @@ class Solution:
 
     def findMaxForm_bottom_up(self, strs: List[str], m: int, n: int) -> int:
         table = [[0] * (n + 1) for _ in range(m + 1)]
-        for str in strs:
+        for str in strs:  # str可以看作是物品
             zero, one = str.count('0'), str.count('1')
+            # m, n 只是背包的两个维度
             for i in range(m, zero - 1, -1):
                 for j in range(n, one - 1, -1):
                     table[i][j] = max(1 + table[i - zero][j - one], table[i][j])

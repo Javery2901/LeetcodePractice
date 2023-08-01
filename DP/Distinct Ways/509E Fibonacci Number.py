@@ -24,6 +24,7 @@ class Solution:
                 table[i] = table[i - 1] + table[i - 2]
         return table[n]
 
+
 s = Solution()
 n = 3
 test = s.fib_bottom_up(n)

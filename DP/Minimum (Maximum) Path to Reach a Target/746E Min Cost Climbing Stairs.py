@@ -21,6 +21,7 @@ class Solution:
         table = [0] * (n + 1)
         for i in range(2, n + 1):
             table[i] = min(table[i - 1] + cost[i - 1], table[i - 2] + cost[i - 2])
+            # table的元素代表刚到达这个index时的费用
         return table[n]
 
     def minCostClimbingStairs_two_pointer(self, cost: List[int]) -> int:

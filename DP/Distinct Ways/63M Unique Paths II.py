@@ -4,6 +4,7 @@ from typing import List
 class Solution:
     def uniquePathsWithObstacles_bottom_up(self, obstacleGrid: List[List[int]]) -> int:
         # all the '1' can be considered that the number of path going through is 0
+        # 可优化为一维数组，space O(n)
         if obstacleGrid[0][0] == 1:
             return 0
 

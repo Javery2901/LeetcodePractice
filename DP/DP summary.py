@@ -4,7 +4,7 @@ There are 5 patterns:
 2. Distinct Ways
 3. Merging Intervals
 4. DP on Strings
-5.
+5. Decision-Making
 """
 
 """

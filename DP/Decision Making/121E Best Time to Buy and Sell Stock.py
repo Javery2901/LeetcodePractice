@@ -1,3 +1,4 @@
+from cmath import inf
 from typing import List
 
 
@@ -20,13 +21,19 @@ class Solution:
         return max_profit
 
     def maxProfit_bottom_up(self, prices: List[int]) -> int:
-        table = [0] * (len(prices))
-        buy = prices[0]
+        # 随想录系列
+
+        table = [[0] * 2 for _ in range(len(prices))]
+        # table[i][0] 代表持有股票时手头的总金额， table[i][1] 代表手头不持有股票时的总金额
+        table[0][0] = -prices[0]
+        table[0][1] = 0
         for i in range(1, len(prices)):
-            if prices[i] < buy:
-                buy = prices[i]
-            table[i] = max(table[i - 1], prices[i] - buy)
-        return table[-1]
+            table[i][0] = max(table[i - 1][0], -prices[i])
+            # (跟前一天一样继续持有时现金总额，或者花现金买入后的现金总额)
+            table[i][1] = max(table[i - 1][1], table[i - 1][0] + prices[i])
+            # （跟前一天一样继续不持有时现金总额，或者将昨天持有的卖出后的现金总额）
+        print(table)
+        return table[-1][-1]
 
 
 s = Solution()

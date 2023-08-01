@@ -5,24 +5,22 @@ this is the same as coin change
 
 class Solution:
     def numSquares_top_down(self, n: int) -> int:
-        heuristic = []
-        for i in range(1, 101):
-            heuristic.append(i ** 2)
         memo = {}
 
-        def dp(n, memo):
-            if n < 0:
-                return math.inf
-            if n == 0:
+        def recursion(number):
+            if number == 0:
                 return 0
-            if n in memo:
-                return memo[n]
-            memo[n] = min(1 + dp(n - x, memo) for x in heuristic if x <= n)
-            return memo[n]
+            if number < 0:
+                return math.inf
+            if number in memo:
+                return memo[number]
+            res = math.inf
+            for i in range(1, int(math.sqrt(number) + 1)):
+                res = min(res, 1 + recursion(number - i ** 2))
+            memo[number] = res
+            return memo[number]
 
-        memo[n] = dp(n, memo)
-        # print(memo)
-        return memo[n]
+        return recursion(n)
 
     def numSquares_bottom_up(self, n: int) -> int:
         heuristic = []

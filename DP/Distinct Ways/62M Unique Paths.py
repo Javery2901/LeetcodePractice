@@ -1,5 +1,6 @@
 class Solution:
     def uniquePaths_bottom_up(self, m: int, n: int) -> int:
+        # 构建表格，表格的是结果与其上一位和左一位相关，因为只能从这两个地方到达这里
         table = [[0] * (1 + n) for _ in range(m + 1)]
         table[1][1] = 1
         for i in range(1, m + 1):

@@ -44,5 +44,5 @@ def partition(l, r, pivot):  # this is very similar with quick sort, but return 
 
 
 ls = [3, 2, 3, 1, 2, 4, 5, 5, 6]
-k = 6
+k = 4
 print(quick_select(ls, k))

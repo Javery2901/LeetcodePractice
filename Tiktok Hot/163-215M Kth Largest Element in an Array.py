@@ -12,9 +12,20 @@ class Solution:
             k -= 1
         return -hq[0]
 
+    def findKthLargest2(self, nums: List[int], k: int) -> int:
+        hq = []
+        for n in nums:
+            if len(hq) < k:
+                heapq.heappush(hq, n)
+            else:
+                if n > hq[0]:
+                    heapq.heappop(nums)
+                    heapq.heappush(hq, n)
+        return hq[0]
+
 
 class Solution2:
-    def partition(self, nums: List[int], left: int, right: int) -> int:
+    def partition(self, nums: List[int], left: int, right: int) -> int:  # quick select
         pivot, fill = nums[right], left
 
         for i in range(left, right):

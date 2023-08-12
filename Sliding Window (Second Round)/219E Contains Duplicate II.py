@@ -24,7 +24,7 @@ class Solution:
 
 
 s = Solution()
-nums = [1,0,1,1]
-k = 1
+nums = [1,2,3,1,2,3]
+k = 2
 test = s.containsNearbyDuplicate(nums, k)
 print(test)

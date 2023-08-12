@@ -34,10 +34,25 @@ class Solution:
                 nums[i] = pro // nums[i]
         return nums
 
+    def productExceptSelf_0811(self, nums: List[int]) -> List[int]:
+        zero_count = 0
+        product = 1
+        for n in nums:
+            if n == 0:
+                zero_count += 1
+            else:
+                product *= n
+        if zero_count > 1:
+            return [0] * len(nums)
+        elif zero_count == 1:
+            return [0 if n != 0 else product for n in nums]
+        else:
+            return [product // n for n in nums]
+
 
 s = Solution()
-nums = [-1,1,0,-3,0]
-res = s.productExceptSelf(nums)
+nums = [1,2,3,4]
+res = s.productExceptSelf_0811(nums)
 print(res)
 
 

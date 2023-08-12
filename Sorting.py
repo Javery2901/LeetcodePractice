@@ -203,6 +203,11 @@ def quick_sort_helper(ls, start, end):
     quick_sort_helper(ls, splitpoint + 1, end)
 def partition(ls, start, end):
     pivot = ls[start] # in this method, pivot goes from ls[0]
+
+    # x = random.randint(start, end)
+    # pivot = ls[x]
+    # ls[start], ls[x] = ls[x], ls[start] # 这个可以变成random
+
     leftpointer = start +1
     rightpointer = end
     while True:

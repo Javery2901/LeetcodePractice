@@ -14,7 +14,7 @@ class Solution:
         word_dict = defaultdict(list)
         for str in strs:
             word = sorted(str)  # ['a', 'e', 't']
-            key = ''.join(word)
+            key = ''.join(word)  # important
             word_dict[key].append(str)
         ls = []
         for _ in word_dict:

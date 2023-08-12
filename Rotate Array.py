@@ -1,6 +1,8 @@
 """
 This comes from leetcode 48M, rotate array 90, 180, 270, 360 degree
 """
+from typing import List
+
 
 class Solution:
     def rotate_inplace(self, matrix: List[List[int]]) -> None:

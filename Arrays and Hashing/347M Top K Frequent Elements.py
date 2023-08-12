@@ -1,3 +1,5 @@
+import collections
+import heapq
 from typing import List
 from collections import defaultdict
 from heapq import heappop, heappush
@@ -31,9 +33,27 @@ class Solution:
                 k -= 1
         return ls
 
+    def topKFrequent_0811(self, nums: List[int], k: int) -> List[int]:
+        counter = collections.Counter(nums)
+        ls = []
+        for key, value in counter.items():  #
+            ls.append((value, key))  # [(-freq, num)]
+        res = []
+        for i in range(len(ls)):
+            if k == 0:
+                if ls[i][0] > res[0][0]:
+                    heapq.heappop(res)
+                    k += 1
+                else:
+                    continue
+            heapq.heappush(res, ls[i])
+            k -= 1
+        # print(res)
+        return [number for freq, number in res]
+
 
 s = Solution()
 nums = [1,1,1,1,2,2,2,2,3,3,3,3,3,6]
-k = 1
-res = s.topKFrequent(nums, k)
+k = 2
+res = s.topKFrequent_0811(nums, k)
 print(res)

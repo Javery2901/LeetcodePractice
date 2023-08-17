@@ -5,12 +5,12 @@ class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left = 0
         right = len(nums) - 1
-        while left <= right:
+        while left < right:
             mid = left + (right - left) // 2
             if nums[mid] == target:
                 return mid
             if nums[mid] >= nums[left]:  # they are in the same segment
-                if nums[left] <= target < nums[left]:
+                if nums[left] <= target < nums[mid]:
                     right = mid
                 else:
                     left = mid + 1
@@ -19,8 +19,9 @@ class Solution:
                     left = mid + 1
                 else:
                     right = mid
+        if nums[left] == target:
+            return left
         return -1
-
 
 
 if __name__ == '__main__':

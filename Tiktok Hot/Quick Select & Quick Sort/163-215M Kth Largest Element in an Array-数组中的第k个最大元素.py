@@ -1,4 +1,5 @@
 import heapq
+from random import randint
 from typing import List
 
 
@@ -52,6 +53,35 @@ class Solution2:
                 break
 
         return nums[k]
+
+    def findKthLargest4(self, nums, k):
+        # Solution3. Quick Slection with Random Pivot
+        # Time Complexity O(n)
+        def partition(nums, left, right):
+            ranPivotIndex = randint(left, right)
+            pivot = nums[ranPivotIndex]
+            pointer = left
+            nums[left], nums[ranPivotIndex] = nums[ranPivotIndex], nums[left]
+
+            for i in range(left + 1, right + 1):
+                if nums[i] < pivot:
+                    pointer += 1
+                    nums[i], nums[pointer] = nums[pointer], nums[i]
+            nums[left], nums[pointer] = nums[pointer], nums[left]
+            return pointer
+
+        left, right = 0, len(nums) - 1
+        k = len(nums) - k
+        # nums is sorted in the ascending order,
+        # So finding the kth largest is trying to get the index of len(nums) - k
+        while left < right:
+            index = partition(nums, left, right)
+            # The value for the location of 'index' has been found
+            if index >= k:
+                right = index
+            else:
+                left = index + 1
+        return nums[left]
 
 
 if __name__ == '__main__':

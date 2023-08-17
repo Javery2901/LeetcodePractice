@@ -1,6 +1,12 @@
 # Definition for singly-linked list.
 from typing import Optional
+"""
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
 
+The number of the nodes in the list is in the range [0, 104].
+-105 <= Node.val <= 105
+pos is -1 or a valid index in the linked-list.
+"""
 
 class ListNode:
     def __init__(self, x):

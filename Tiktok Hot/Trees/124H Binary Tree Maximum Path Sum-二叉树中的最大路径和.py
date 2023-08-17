@@ -1,6 +1,15 @@
 # Definition for a binary tree node.
 from cmath import inf
 from typing import Optional
+"""
+A path in a binary tree is a sequence of nodes 
+where each pair of adjacent nodes in the sequence has an edge connecting them. 
+A node can only appear in the sequence at most once. 
+Note that the path does not need to pass through the root.
+
+The number of nodes in the tree is in the range [1, 3 * 104].
+-1000 <= Node.val <= 1000
+"""
 
 
 class TreeNode:

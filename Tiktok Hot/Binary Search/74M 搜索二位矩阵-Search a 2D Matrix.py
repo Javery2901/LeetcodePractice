@@ -1,4 +1,8 @@
 from typing import List
+"""
+Each row is sorted in non-decreasing order.
+The first integer of each row is greater than the last integer of the previous row.
+"""
 
 
 class Solution:

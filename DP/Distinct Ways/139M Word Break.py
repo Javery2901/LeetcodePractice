@@ -53,11 +53,16 @@ class Solution:
             for j in range(i):
                 if table[j] and s[j: i] in word_set:
                     table[i] = True
+        print(table)
         return table[-1]
 
 
 so = Solution()
-s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
-wordDict = ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
+s = "leetcode"
+wordDict = ["leet","code"]
+# s = "catsandog"
+# wordDict = ["cats","dog","sand","and","cat"]
+# s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"
+# wordDict = ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
 test = so.wordBreak_bottom_up(s, wordDict)
 print(test)

@@ -1,5 +1,7 @@
 from typing import List
-
+"""
+仅有一个重复的数字，不能修改数组
+"""
 """
 可看作每个数值指向下一个index的位置。如 1 3 4 2 2
 nums[0] = 1 代表位置0保存了一个数1，指向位置1
@@ -29,6 +31,6 @@ class Solution:
 
 
 s = Solution()
-nums = [2, 5, 9, 6, 9, 3, 8, 4, 7, 1]
+nums = [1,3,4,2,2]
 test = s.findDuplicate(nums)
 print(test)

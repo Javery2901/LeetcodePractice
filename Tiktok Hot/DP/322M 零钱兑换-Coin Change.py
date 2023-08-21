@@ -1,6 +1,7 @@
 from math import inf
 from typing import List
 '''
+amount表示总金额，返回凑成总金额所需的最少的硬币数，不能凑成返回-1
 Input: coins = [1,2,5], amount = 11
 Output: 3
 Explanation: 11 = 5 + 5 + 1

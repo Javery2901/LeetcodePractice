@@ -1,5 +1,6 @@
 from typing import List
 """
+amount表示总金额，返回凑成总金额的硬币组合数
 Input: amount = 5, coins = [1,2,5]
 Output: 4
 Explanation: there are four ways to make up the amount:

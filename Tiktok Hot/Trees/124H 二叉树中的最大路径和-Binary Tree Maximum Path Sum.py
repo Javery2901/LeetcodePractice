@@ -1,6 +1,7 @@
 # Definition for a binary tree node.
 from cmath import inf
 from typing import Optional
+# 543# 找树的直径类型相同
 """
 A path in a binary tree is a sequence of nodes 
 where each pair of adjacent nodes in the sequence has an edge connecting them. 

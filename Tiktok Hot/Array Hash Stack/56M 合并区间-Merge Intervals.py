@@ -24,11 +24,11 @@ class Solution:
                 start, end = i, j
             else:  # i <= end:
                 end = max(end, j)
-        res.append([start, end])
+        res.append([start, end])  # important
         return res
 
 
 s = Solution()
-intervals = [[1,4],[2,3]]
+intervals = [[1,3],[2,6],[8,10],[15,18]]
 test = s.merge(intervals)
 print(test)

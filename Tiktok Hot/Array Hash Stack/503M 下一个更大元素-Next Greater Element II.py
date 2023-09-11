@@ -40,6 +40,7 @@ class Solution:
                 res[i] = -1
                 continue
             stack.append((i, n))
+
         for i, n in enumerate(nums):
             while stack and n > stack[-1][1]:
                 index, number = stack.pop()

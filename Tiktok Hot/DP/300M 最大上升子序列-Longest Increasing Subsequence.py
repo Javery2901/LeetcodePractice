@@ -7,5 +7,5 @@ class Solution:
         for i in range(1, len(nums)):
             for j in range(i):
                 if nums[i] > nums[j]:
-                    table[i] = max(table[i], table[j + 1])
+                    table[i] = max(table[i], table[j] + 1)
         return max(table)

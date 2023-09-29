@@ -12,7 +12,7 @@ def search(nums, n):
             left = mid + 1
     return left if nums[left] == n else -1
 
-
+# try
 # nums = [1, 2, 2, 2, 3, 5, 6]
 # n = 5
 # print(search(nums, n))
